@@ -1,2 +1,2 @@
-# Data-Structures-foundation
-Different Algorithms and Data Structure Uusage
+# Data-Structures-foundation-Array
+Different Algorithms and Data Structure Usage
