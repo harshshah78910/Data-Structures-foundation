@@ -19,19 +19,27 @@ public class SieveAlgorithm {
 		{
 			if(arry[i] == 1)
 			{
-				for(int j=2; j*i<=n ; j++)
-				{
-					arry[i*j] = 0;
-				}
+				strikeOffTheFactors(n, arry, i);
 			}
 		}
 		
+		printPrimeNumbers(n, arry);
+
+	}
+
+	private static void printPrimeNumbers(int n, int[] arry) {
 		for(int i=2 ; i<n+1; i++)
 		{
 		    if(arry[i]==1)
 		    	System.out.print(i + " ");
 		}
+	}
 
+	private static void strikeOffTheFactors(int n, int[] arry, int i) {
+		for(int j=2; j*i<=n ; j++)
+		{
+			arry[i*j] = 0;
+		}
 	}
 
 }
