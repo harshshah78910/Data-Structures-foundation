@@ -13,7 +13,7 @@ public class BinarySearch {
 	{
 		int start = 0; 
 		int end = arr.length-1;
-		int mid = (start+end)/2;
+		int mid = start + (end-start)/2;
 		while(start <= end)
 		{
 			if(arr[mid] == x)
@@ -28,7 +28,7 @@ public class BinarySearch {
 				start = mid +1;
 				end = end;
 			}
-			mid = (start + end)/2;
+			mid = start + (end-start)/2;
 		}
 		return -1;
 	}
@@ -39,7 +39,7 @@ public class BinarySearch {
 		{
 			return -1;
 		}
-		int mid = (start+end)/2;
+		int mid = start + (end-start)/2;
 		if(arr[mid] == x)
 		{
 			return mid;
