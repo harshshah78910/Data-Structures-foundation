@@ -7,8 +7,8 @@ public class JobScheduling {
 	public static void main(String[] args) {
 
 		JobScheduling j = new JobScheduling();
-		Job[] arr = { j.new Job(1, 20, 4), j.new Job(2, 10, 1), j.new Job(3, 40, 1), j.new Job(4, 30, 1) };
-		j.printJobScheduling(arr, 4);
+		Job[] arr = { j.new Job(1, 472, 68)};
+		j.printJobScheduling(arr, 1);
 	}
 
 	class Job {
@@ -24,7 +24,9 @@ public class JobScheduling {
 	void printJobScheduling(Job arr[], int n) {
 
 		ArrayList<Job> jobList = new ArrayList<>();
+		int highestDeadline = 0;
 		for (int i = 0; i < n; i++) {
+			highestDeadline = highestDeadline < arr[i].deadline ? arr[i].deadline : highestDeadline;
 			jobList.add(arr[i]);
 		}
 
@@ -39,13 +41,13 @@ public class JobScheduling {
 
 		int jobsSequenced = 0;
 		int profit = 0;
-		int[] profitArray = new int[n];
+		int[] profitArray = new int[highestDeadline];
 		while (!jobList.isEmpty()) {
 			Job job = jobList.remove(0);
 			int jobDeadLine = job.deadline;
 			while (jobDeadLine >= 0) {
 
-				if (jobDeadLine  > 0 && jobDeadLine  < n && profitArray[jobDeadLine - 1] == 0) {
+				if (jobDeadLine  > 0 && jobDeadLine-1  < highestDeadline && profitArray[jobDeadLine - 1] == 0) {
 					profitArray[jobDeadLine - 1] = job.profit;
 					profit += job.profit;
 					jobsSequenced++;
