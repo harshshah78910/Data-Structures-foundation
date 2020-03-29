@@ -1,5 +1,5 @@
 
-public class Decode {
+ class Decode {
 
 	class MinHeapNode
 	{
