@@ -1,6 +1,7 @@
 package Graphs;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class DFS {
 
@@ -33,6 +34,30 @@ public class DFS {
 				  dfsRec(node, list, vis);
 			  }
 		  }
+	}
+	
+	static void stackImplDFS(int src,ArrayList<ArrayList<Integer>> list,  boolean vis[] )
+	{
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		stack.push(src);
+		vis[src] = true;
+		
+		while(!stack.isEmpty())
+		{
+			int currentNode = stack.pop();
+			System.out.print(currentNode +" ");
+			vis[currentNode] = true;
+			ArrayList<Integer> adjList = list.get(currentNode);
+			for(int node : adjList)
+			{
+				if(!vis[node])
+				{
+					stack.push(node);
+				}
+			}
+		}
+		
 	}
 
 }
