@@ -1,6 +1,8 @@
 package Graphs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class DetectCycleDirected {
 
@@ -56,4 +58,55 @@ public class DetectCycleDirected {
 		return false;
 
 	}
+	
+	
+	
+	static boolean topoSort(ArrayList<ArrayList<Integer>> list, int N) //BFS Approach to solve - Kahns Algorithm
+	{
+
+		int[] inDegree = new int[N];
+		
+		//Calculating IN-Degree of all Vertices
+		for(int i=0; i<N; i++)
+		{
+			ArrayList<Integer> adjList = list.get(i);
+			for(int node: adjList)
+			{
+				inDegree[node]++;
+			}
+		}
+		
+		Queue<Integer> queue = new LinkedList<Integer>();
+		
+		int count=0;
+		
+		for(int i=0; i<N; i++)
+		{
+			if(inDegree[i] == 0)
+				queue.add(i);
+		}
+		
+		while(!queue.isEmpty())
+		{
+			int node = queue.remove();
+			ArrayList<Integer> adjList = list.get(node);
+			for(int n : adjList)
+			{
+				inDegree[n]--;
+				if(inDegree[n] == 0)
+					queue.add(n);
+			}
+			count++;
+		}
+		
+		return (count != N);
+		// If Count is not equal to Number of Vertices that means it contains cycle in the graph
+		
+	}
+
+	
+	
+	
+	
+	
 }
