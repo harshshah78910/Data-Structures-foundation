@@ -53,6 +53,7 @@ public class DFS {
 			{
 				if(!vis[node])
 				{
+					vis[node] = true;
 					stack.push(node);
 				}
 			}
