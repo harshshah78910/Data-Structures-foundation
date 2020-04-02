@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class TopologicalSort {
 
@@ -32,12 +33,28 @@ public class TopologicalSort {
 			System.out.print(i +" ");
 		}
 		
+		System.out.println();
+		
+		int N=6;
+		Stack<Integer> stack = new Stack<Integer>();
+		boolean visited[] = new boolean[N];
+		for(int i=0; i<N; i++)
+		{
+			if(!visited[i])
+			topSortUsingDFS(list, N, stack, i, visited);
+		}
+		
+		while(!stack.isEmpty())
+		{
+			System.out.print(stack.pop() +" ");
+		}
 
 	
 
 	}
 
-	static int[] topoSort(ArrayList<ArrayList<Integer>> list, int N) {
+	static int[] topoSort(ArrayList<ArrayList<Integer>> list, int N) // This is similar to BFS approach of Sort 
+	{
 
 		int[] inDegree = new int[N];
 		
@@ -79,5 +96,22 @@ public class TopologicalSort {
 		return result;
 		
 	}
+	
+	
+	static void topSortUsingDFS(ArrayList<ArrayList<Integer>> list, int N, Stack<Integer> stack, int src, boolean visited[])
+	{
+		visited[src] = true;
+		ArrayList<Integer> adjList = list.get(src);
+		for(int node : adjList)
+		{
+			if(!visited[node])
+			{
+				topSortUsingDFS(list,N,stack,node,visited);
+			}
+		}
+		stack.push(src);
+		
+	}
+	
 
 }
