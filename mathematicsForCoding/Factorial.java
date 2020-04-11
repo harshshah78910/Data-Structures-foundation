@@ -20,7 +20,7 @@ public class Factorial {
 	
 	
 	
-	 public static double digitsInFactorial(int N)
+	 public static double digitsInFactorial(int N) //Can Find Digits in factorial with large Numbers
 	    {
 		 
 		 if(N == 0)
