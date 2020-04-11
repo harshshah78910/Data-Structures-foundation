@@ -1,0 +1,47 @@
+package mathematicsForCoding;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class DivisorsExactly3 {
+
+	public static void main(String[] args) 
+	{
+		int number = 6;
+		int N  = (int)Math.ceil(Math.sqrt(number));
+		
+		ArrayList<Integer> primeNumbersUptoN = new DivisorsExactly3().primeNumbersUptoN(N);
+		for(int n : primeNumbersUptoN)
+		{
+			if(n * n <= number)
+			{
+				System.out.print(n*n + " ");
+			}
+		}
+		
+	}
+
+	public ArrayList<Integer>  primeNumbersUptoN(int N) 
+	{
+		ArrayList<Integer> listOfPrimes =new ArrayList<Integer>();
+		boolean[] primeNumbers = new boolean[N + 2];
+		Arrays.fill(primeNumbers, true);
+		primeNumbers[0] = false;
+		primeNumbers[1] = false;
+
+		int sqrt = (int) Math.sqrt(N);
+		for (int i = 2; i <= sqrt; i++) {
+			for (int j = i + i; j < N + 2; j = j + i) {
+				primeNumbers[j] = false;
+			}
+		}
+
+		for (int i = 2; i < N + 2; i++) {
+			if (primeNumbers[i])
+				listOfPrimes.add(i);
+		}
+
+		return listOfPrimes;
+	}
+
+}
