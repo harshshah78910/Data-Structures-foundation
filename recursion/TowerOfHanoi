@@ -1,0 +1,29 @@
+package recursion;
+
+public class Hanoi {
+
+	public static void main(String[] args) {
+		
+
+		Hanoi h = new Hanoi();
+		h.toh(3,1,3,2);
+		System.out.println(h.moves);
+	}
+	
+	public long moves;
+
+    public void toh(int N, int from, int to, int aux) {
+        
+    	if(N<=0)
+    		return;
+    		
+    	toh(N-1, from, aux, to);
+    	System.out.print("move disk " +N+ " from rod " +from+" to rod " +to);
+    	System.out.println();
+    	moves++;
+    	toh(N-1, aux, to, from);
+    }
+    
+    
+
+}
